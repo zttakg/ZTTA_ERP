@@ -1,0 +1,8 @@
+<tr>
+  <td><%= cut.name %></td>
+  <td><%= cut.consumable_cost %></td>
+  <td><%= cut.overhead_cost %></td>
+  <td><%= cut.height_max %></td>
+  <td><%= cut.width_max %></td>
+  <td><%= link_to 'Редактировать', edit_cut_path(cut.id), class: "btn btn-outline-primary" if current_employee.allowed_to?(:edit, 'cuts') %></td>
+</tr>

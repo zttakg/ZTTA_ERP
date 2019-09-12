@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ЗТТА ERP</title>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="/adminLTE/font-awesome/css/font-awesome.min.css">
+  <link href="<%= asset_url 'favicons/apple-touch-icon.png' %>" rel="apple-touch-icon" sizes="180x180">
+  <link type="image/png" href="<%= asset_url 'favicons/favicon-32x32.png' %>" rel="icon" sizes="32x32">
+  <link type="image/png" href="<%= asset_url 'favicons/favicon-16x16.png' %>" rel="icon" sizes="16x16">
+  <link href="<%= asset_url 'favicons/site.webmanifest' %>" rel="manifest">
+  <link href="<%= asset_url 'favicons/safari-pinned-tab.svg' %>" rel="mask-icon" color="#f05a22">
+  <link href="<%= asset_url 'favicons/favicon.ico' %>" rel="shortcut icon">
+  <meta name="msapplication-TileColor" content="#f05a22">
+  <meta name="msapplication-config" content="<%= asset_url 'favicons/browserconfig.xml' %>">
+  <meta name="theme-color" content="#ffffff">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <%= render 'layouts/navbar' %>
+
+	<%= render 'layouts/sidebar' %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+		 <!-- Main content -->
+    <section class="content">
+      <% if notice.present? %>
+        <div class="alert alert-info alert-dismissible col-md-4 offset-md-8">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fa fa-info"></i> <%= notice %></h5>
+        </div>
+		  <% end %>
+      <% if alert.present? %>
+        <div class="alert alert-danger alert-dismissible col-md-4 offset-md-8">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fa fa-info"></i> <%= alert %></h5>
+        </div>
+		  <% end %>
+		  <%= yield %>
+		</section>
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<%#= javascript_include_tag "/adminLTE/jquery/jquery.min.js" %>
+<!-- Bootstrap 4 -->
+<%= javascript_include_tag "/adminLTE/bootstrap/js/bootstrap.bundle.min.js" %>
+<!-- AdminLTE App -->
+<%= javascript_include_tag "adminlte.js" %>
+<script>
+    clearFlashOnReady();
+</script>
+</body>
+</html>

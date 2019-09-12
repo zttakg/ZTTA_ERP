@@ -1,0 +1,181 @@
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="/" class="brand-link">
+    <img src=<%= image_url("ztta_logo.png") %> alt="ZTTA Logo" style="max-height: 30px; margin: 0 0 0 1.5rem">
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+      </div>
+      <div class="info">
+        <a href="#" class="d-block">
+          <%= "#{current_employee.name} (#{current_employee.role.name})" %>
+        </a>
+      </div>
+    </div>
+    <% if current_employee %>
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+              with font-awesome or any other icon font library -->
+        <% if current_employee.allowed_to?(:list, 'clients') %>
+          <li class="nav-item">
+              <a href="<%= clients_path %>" class="nav-link <%= nav_active('clients')%>">
+                <i class="nav-icon fa fa-users"></i>
+                <p>
+                  Клиенты
+                </p>
+              </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'individual_orders') %>
+          <li class="nav-item">
+            <a href="<%= individual_orders_path %>" class="nav-link <%= nav_active('individual_orders')%> <%= nav_active('individual_item_shipments')%>">
+              <i class="nav-icon fa fa-list"></i>
+              <p>
+                Заказы
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'employees') %>
+          <li class="nav-item">
+            <a href="<%= employees_path %>" class="nav-link <%= nav_active('employees')%>">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Сотрудники
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'cuts') %>
+          <li class="nav-item">
+            <a href="<%= cuts_path %>" class="nav-link <%= nav_active('cuts')%>">
+              <i class="nav-icon fa fa-puzzle-piece"></i>
+              <p>
+                Резы
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:edit, 'constants') %>
+          <li class="nav-item">
+            <a href="<%= constant_edit_path %>" class="nav-link <%= nav_active('constants', 'edit')%>">
+              <i class="nav-icon fa fa-cogs"></i>
+              <p>
+                Параметры конструктора
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:show, 'constructor') %>
+          <li class="nav-item">
+            <a href="<%= constructor_options_path %>" class="nav-link <%= nav_active('constructor', 'options')%>">
+              <i class="nav-icon fa fa-table"></i>
+              <p>
+                Таблица данных
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'materials') %>
+          <li class="nav-item">
+            <a href="<%= materials_path %>" class="nav-link <%= nav_active('materials')%>">
+              <i class="nav-icon fa fa-cubes"></i>
+              <p>
+                Материалы
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'details') %>
+          <li class="nav-item">
+            <a href="<%= details_path(status: 'expects_assessed') %>" class="nav-link <%= nav_active('details')%>">
+              <i class="nav-icon fa fa-microchip"></i>
+              <p>
+                Нетиповые детали
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'cities') %>
+          <li class="nav-item">
+            <a href="<%= cities_path %>" class="nav-link <%= nav_active('cities')%>">
+              <i class="nav-icon fa fa-map-o"></i>
+              <p>
+                Города поставок
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'roles') %>
+          <li class="nav-item">
+            <%= link_to roles_path, class: "nav-link #{nav_active('roles')}"  do %>
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Роли
+              </p>
+            <% end %>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:edit, 'contacts') %>
+          <li class="nav-item">
+            <%= link_to edit_contacts_path, class: "nav-link #{nav_active('contacts')}"  do %>
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+                Контактные данные
+              </p>
+            <% end %>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'page_elements') %>
+          <li class="nav-item">
+            <a href="<%= page_elements_path %>" class="nav-link <%= nav_active('page_elements')%>">
+              <i class="nav-icon fa fa-puzzle-piece"></i>
+              <p>
+                Элементы страницы
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'services') %>
+          <li class="nav-item">
+            <a href="<%= services_path %>" class="nav-link <%= nav_active('services')%>">
+              <i class="nav-icon fa fa-cart-plus"></i>
+              <p>
+                Продукция и услуги
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:access, 'delivery_payments') %>
+          <li class="nav-item">
+            <a href="<%= delivery_payments_path %>" class="nav-link <%= nav_active('delivery_payments')%>">
+              <i class="nav-icon fa fa-credit-card"></i>
+              <p>
+                Доставка и оплата
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to destroy_employee_session_path, method: :delete, class: "nav-link"  do %>
+            <i class="nav-icon fa fa-sign-out"></i>
+            <p>
+              Выйти
+            </p>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+    <% end %>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

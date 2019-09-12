@@ -1,0 +1,245 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Контактные данные</h3>
+        </div>
+        <%= form_for @contact, url: contacts_path, method: :put, html: {class: 'contact_form'} do |f| %>
+          <ul>
+            <li>
+              <label for="metalware">Металлоконструкции</label>
+              <input id="metalware" type="tel" name="contact[metalware]" placeholder="+ (XXX) XXX XX XX XX" pattern="\(\d{3}\) \d{3}\ \d{2}\ \d{2} \d{2}" class="masked" value="<%= @contact.metalware %>">
+            </li>
+            <li>
+              <label for="telegram">Telegram для отдела металлоконструкции </label><br>
+              <input id="telegram" type="text" name="contact[telegram_link_for_metalware]" placeholder="Введите ссылку на профиль в telegram " value="<%= @contact.telegram_link_for_metalware %>">
+              <span>Пример: https://t.me/username</span>
+            </li>
+            <li>
+              <label for="whatsapp">WhatsApp  для отдела металлоконструкции </label><br>
+              <input id="whatsapp" type="text" name="contact[whatsapp_link_for_metalware]" placeholder="Введите whatsapp номер " value="<%= @contact.whatsapp_link_for_metalware %>">
+              <span>Пример: https://api.whatsapp.com/send?phone=996xxxyyyyyy</span>
+            </li>
+            <li>
+              <label for="cutting">Резка листа</label>
+              <input id="cutting" type="tel" name="contact[cutting]" placeholder="+ (XXX) XXX XX XX XX" pattern="\(\d{3}\) \d{3}\ \d{2}\ \d{2} \d{2}" class="masked" value="<%= @contact.cutting %>">
+            </li>
+            <li>
+              <label for="telegram">Telegram</label><br>
+              <input id="telegram" type="text" name="contact[telegram_link]" placeholder="Введите ссылку на профиль в telegram " value="<%= @contact.telegram_link %>">
+              <span>Пример: https://t.me/username</span>
+            </li>
+            <li>
+              <label for="whatsapp">WhatsApp</label><br>
+              <input id="whatsapp" type="text" name="contact[whatsapp_link]" placeholder="Введите whatsapp номер " value="<%= @contact.whatsapp_link %>">
+              <span>Пример: https://api.whatsapp.com/send?phone=996xxxyyyyyy</span>
+            </li>
+            <li>
+              <label for="email">Email</label><br>
+              <input id="email" type="email" name="contact[email]" placeholder="info@temirtulpar.com" value="<%= @contact.email %>">
+            </li>
+            <li>
+              <label for="address">Адрес</label><br>
+              <input id="address" type="text" name="contact[address]" placeholder="Введите адрес" value="<%= @contact.address %>">
+            </li>
+            <li>
+              <label for="facebook">Facebook</label><br>
+              <input id="facebook" type="text" name="contact[fb_link]" placeholder="Введите ссылку на профиль в facebook" value="<%= @contact.fb_link %>">
+              <span>Пример: https://www.facebook.com/</span>
+            </li>
+            <li>
+              <label for="instagram">Instagram</label><br>
+              <input id="instagram" type="text" name="contact[instagram_link]" placeholder="Введите ссылку на профиль в instagram" value="<%= @contact.instagram_link %>">
+              <span>Пример: https://www.instagram.com/</span>
+            </li>
+
+          </ul>
+          <div>
+            <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.contact_form{
+  padding: 0.75rem 1.25rem;
+}
+.contact_form ul{
+  padding: 0;
+  list-style: none;
+}
+  input.masked,
+  .shell span {
+    font-size: 16px;
+    font-family: monospace;
+    padding-right: 10px;
+    background-color: transparent;
+    text-transform: uppercase;
+  }
+
+  label {
+    display: inline-block;
+    width: 14em;
+  }
+  input {
+    font-size: 16px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+  }
+</style>
+
+
+<script>
+  var masking = {
+
+    maskedInputs : document.querySelectorAll('.masked'),
+    maskedNumber : 'XdDmMyY9',
+    maskedLetter : '_',
+
+    init: function () {
+      masking.setUpMasks(masking.maskedInputs);
+      masking.maskedInputs = document.querySelectorAll('.masked');
+      masking.activateMasking(masking.maskedInputs);
+    },
+
+    setUpMasks: function (inputs) {
+      var i, l = inputs.length;
+
+      for(i = 0; i < l; i++) {
+        masking.createShell(inputs[i]);
+      }
+    },
+
+    createShell : function (input) {
+      var text = '',
+          placeholder = input.getAttribute('placeholder');
+
+      input.setAttribute('maxlength', placeholder.length);
+      input.setAttribute('data-placeholder', placeholder);
+      input.removeAttribute('placeholder');
+
+      text = '<span class="shell">' +
+        '<span aria-hidden="true" id="' + input.id +
+        'Mask"><i></i>' + placeholder + '</span>' +
+        input.outerHTML +
+        '</span>';
+
+      input.outerHTML = text;
+    },
+
+    setValueOfMask : function (e) {
+      var value = e.target.value,
+          placeholder = e.target.getAttribute('data-placeholder');
+
+      return "<i>" + value + "</i>" + placeholder.substr(value.length);
+    },
+
+    activateMasking : function (inputs) {
+      var i, l;
+
+      for (i = 0, l = inputs.length; i < l; i++) {
+        if (masking.maskedInputs[i].addEventListener) {
+          masking.maskedInputs[i].addEventListener('keyup', function(e) {
+            masking.handleValueChange(e);
+          }, false);
+        } else if (masking.maskedInputs[i].attachEvent) {
+            masking.maskedInputs[i].attachEvent("onkeyup", function(e) {
+            e.target = e.srcElement;
+            masking.handleValueChange(e);
+          });
+        }
+      }
+    },
+
+    handleValueChange : function (e) {
+      var id = e.target.getAttribute('id');
+
+      switch (e.keyCode) {
+        case 20:
+        case 17:
+        case 18:
+        case 16:
+        case 37:
+        case 38:
+        case 39:
+        case 40:
+        case  9:
+
+    return;
+        }
+
+      document.getElementById(id).value = masking.handleCurrentValue(e);
+      document.getElementById(id + 'Mask').innerHTML = masking.setValueOfMask(e);
+
+    },
+
+    handleCurrentValue : function (e) {
+      var isCharsetPresent = e.target.getAttribute('data-charset'),
+          placeholder = isCharsetPresent || e.target.getAttribute('data-placeholder'),
+          value = e.target.value, l = placeholder.length, newValue = '',
+          i, j, isInt, isLetter, strippedValue;
+
+      strippedValue = isCharsetPresent ? value.replace(/\W/g, "") : value.replace(/\D/g, "");
+
+      for (i = 0, j = 0; i < l; i++) {
+          var x =
+          isInt = !isNaN(parseInt(strippedValue[j]));
+          isLetter = strippedValue[j] ? strippedValue[j].match(/[A-Z]/i) : false;
+          matchesNumber = masking.maskedNumber.indexOf(placeholder[i]) >= 0;
+          matchesLetter = masking.maskedLetter.indexOf(placeholder[i]) >= 0;
+
+          if ((matchesNumber && isInt) || (isCharsetPresent && matchesLetter && isLetter)) {
+
+                  newValue += strippedValue[j++];
+
+            } else if ((!isCharsetPresent && !isInt && matchesNumber) || (isCharsetPresent && ((matchesLetter && !isLetter) || (matchesNumber && !isInt)))) {
+                  return newValue;
+
+          } else {
+              newValue += placeholder[i];
+          }
+
+          if (strippedValue[j] == undefined) {
+            break;
+          }
+      }
+      if (e.target.getAttribute('data-valid-example')) {
+        return masking.validateProgress(e, newValue);
+      }
+      return newValue;
+    },
+
+    validateProgress : function (e, value) {
+      var validExample = e.target.getAttribute('data-valid-example'),
+          pattern = new RegExp(e.target.getAttribute('pattern')),
+          placeholder = e.target.getAttribute('data-placeholder'),
+          l = value.length, testValue = '';
+
+      if (l == 1 && placeholder.toUpperCase().substr(0,2) == 'MM') {
+        if(value > 1 && value < 10) {
+          value = '0' + value;
+        }
+        return value;
+      }
+
+      for ( i = l; i >= 0; i--) {
+        testValue = value + validExample.substr(value.length);
+        if (pattern.test(testValue)) {
+          return value;
+        } else {
+          value = value.substr(0, value.length-1);
+        }
+      }
+
+      return value;
+    }
+  }
+
+  masking.init();
+</script>

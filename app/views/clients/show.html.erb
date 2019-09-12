@@ -1,0 +1,36 @@
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Контактные данные </h3>
+        </div>
+        <div class="card-body">
+          <h4><%= @client.name %> <%= @client.last_name %></h4>
+
+          <div>Номер телефона: <%= sanitize_db_phone_number(@client.phone_number) %></div>
+          <div>E-Mail:         <%= @client.email %></div>
+          <div>Наименование организации:         <%= @client.company_name %></div>
+          <div>Юридический адрес:         <%= @client.company_legal_address %></div>
+          <div>Фактический адрес:         <%= @client.company_address %></div>
+          <div>ИНН:         <%= @client.company_INN %></div>
+          <div>Код ОКПО:         <%= @client.company_OKPO %></div>
+          <div>Наименование банка:         <%= @client.bank_name %></div>
+          <div>Расчетный счет:         <%= @client.settlement_account %></div>
+          <div>Город Банка:         <%= @client.city %></div>
+          <div>БИК:         <%= @client.company_BIC %></div>
+          <div>Скидка(%):         <%= @client.discount %></div>
+          <div></br>
+            <% if @client.banned_before && @client.banned_before > Date.today %>
+                Пользователь заблокирован до <%= @client.banned_before.strftime('%Y-%m-%d') %></br>
+                Причина:
+                <%= @client.ban_reason %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

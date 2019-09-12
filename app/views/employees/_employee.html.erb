@@ -1,0 +1,17 @@
+<tr>
+  <td><%= employee.id %></td>
+  <td><%= employee.name %></td>
+  <td><%= employee.email %></td>
+  <td><%= sanitize_db_phone_number(employee.phone_number) %></td>
+  <td><%= employee.branch %></td>
+  <td><%= employee.role.name %></td>
+  <td>
+    <% if employee.status == "active" %>
+      <%= link_to '', employee_path(employee.id, employee: { status: "blocked" }), class: "nav-icon fa fa-lock", method: :put if current_employee.allowed_to?(:edit, 'employees') %>
+    <% else %>
+      <%= link_to '', employee_path(employee.id, employee: { status: "active" }), class: "nav-icon fa fa-unlock", method: :put if current_employee.allowed_to?(:edit, 'employees') %>
+    <% end %>
+    <%= link_to '', edit_employee_path(employee.id), class: "nav-icon fa fa-edit" if current_employee.allowed_to?(:edit, 'employees') %>
+    <%= link_to '', employee_path(employee.id), class: "nav-icon fa fa-remove", method: :delete, data: { confirm: 'Вы уверены?' } if current_employee.allowed_to?(:destroy, 'employees') %>
+  </td>
+</tr>

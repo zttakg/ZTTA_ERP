@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Доставка и Оплата</h3>
+        </div>
+        <div class="form-errors-block">
+          <% if @delivery_payment.errors.present? %>
+            <ul>
+              <% @delivery_payment.errors.messages.each do |error| %>
+                <li><%= error.flatten.last %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <%= form_for @delivery_payment do |f| %>
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.label :condition, 'Тип условия' %>
+              <%= f.select :condition, collection: DeliveryPayment.conditions.keys.collect {|p| [ ::I18n.t("delivery_payment.condition.#{p}"), p ] } %>
+            </div>
+            <div class="form-group">
+              <%= f.label :title, "Наименование"%>
+              <%= f.text_field :title, required: false, label: false, class: 'form-control' , placeholder:"Введите наименование" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :description, "Описание"%>
+              <%= f.text_field :description, required: false, label: false, class: 'form-control' , placeholder:"Введите описание" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :content, "Содержание"%>
+              <%= f.text_area :content, required: false, label: false, class: 'form-control' , placeholder:"Введите содержание" %>
+            </div>
+          </div>
+          <div class="card-footer">
+            <%= f.submit class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

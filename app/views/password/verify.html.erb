@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 offset-md-4">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Введите SMS код</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <%= form_tag password_verify_path, method: :post do |f| %>
+          <div class="card-body">
+            <% if @error.present? %>
+              <div class="card-error">
+                <%= @error[:message] %>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <%= hidden_field_tag :phone_number, params[:phone_number] %>
+              <div class="input">
+                <%= text_field_tag :code, '', required: true, autofocus: true, class: 'form-control', placeholder: "Код" %>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <%= submit_tag 'Отправить', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+  </div>
+  <!-- /.row -->
+</div><!-- /.container-fluid -->

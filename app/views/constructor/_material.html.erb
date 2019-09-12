@@ -1,0 +1,19 @@
+<tr>
+  <td><%= material_title(material) %></td>
+  <td><%= material.price_per_kg %></td>
+  <td><%= material.width_max %></td>
+  <td><%= material.height_max %></td>
+
+  <% @cut.each do |cut| %>
+    <% cut_material = @cut_materials["#{material.id}_#{cut.id}"] %>
+
+    <% if cut_material.present? %>
+      <td><%= @cut_materials["#{material.id}_#{cut.id}"].hole_min %></td>
+      <td><%= @cut_materials["#{material.id}_#{cut.id}"].consumption %></td>
+      <td><%= @cut_materials["#{material.id}_#{cut.id}"].speed %></td>
+      <td><%= @cut_materials["#{material.id}_#{cut.id}"].pierce_price %></td>
+    <% else %>
+      <td></td><td></td><td></td><td></td>
+    <% end %>
+  <% end %>
+</tr>

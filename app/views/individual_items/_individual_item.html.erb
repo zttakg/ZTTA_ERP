@@ -1,0 +1,43 @@
+<tr>
+  <td>
+    <div class="details-item__draft">
+      <%== individual_item.svg %>
+      <button class="detail-card-item__draft-zoom" type="button" data-toggle="modal" data-target="#modal<%= individual_item.id %>">
+        <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+      </button>
+    </div>
+  </td>
+  <td><%= pretty_id(individual_item.id) %></td>
+  <td><%= individual_item.name %></td>
+  <td>"<%= individual_item.material_name %>" <%= individual_item.material_thickness %> мм.</td>
+  <td><%= individual_item.cut_name %></td>
+  <td><%= individual_item.count %> шт.</td>
+  <td>
+    <%= link_to "#{individual_item.total_shipment} шт.", individual_item_individual_item_shipments_path(individual_item) %>
+  </td>
+  <td>
+    <%= link_to 'Добавить отгрузку', new_individual_item_individual_item_shipment_path(individual_item), class: "btn btn-outline-primary" if @individual_order.shipped? %>
+
+      <div class="modal fade" id="modal<%= individual_item.id %>" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4><%= individual_item.name %></h4></br>
+              Ширина: <%= individual_item.width %> /
+              Длина: <%= individual_item.height %>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="card-body">
+                <%== individual_item.svg %>
+              </div>
+              <%= link_to 'Скачать', individual_item_path(individual_item, format: :svg), class: "btn btn-outline-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+</tr>
+

@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  database: zavod_prod
+  pool: 5
+  timeout: 5000
+  username: zavod
+  password: Pass2018Zavod
+
+test:
+  adapter: postgresql
+  database: zavod_prod
+  pool: 5
+  timeout: 5000
+  username: zavod
+  password: Pass2018Zavod
+
+production:
+  adapter: postgresql
+  database: zavod_prod
+  pool: 15
+  timeout: 5000
+  username: <%= ENV['DATABASE_USERNAME'].to_s %>
+  password: <%= ENV['DATABASE_PASSWORD'].to_s %>

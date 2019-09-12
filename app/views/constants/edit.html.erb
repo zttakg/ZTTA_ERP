@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Параметры конструктора</h3>
+        </div>
+        <div class="form-errors-block">
+          <% if @constant.errors.present? %>
+            <ul>
+              <% @constant.errors.messages.each do |error| %>
+                <li><%= error.flatten.last %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <%= form_for @constant, url: constant_update_path, method: :put do |f| %>
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.label :margin, "Коэффициент жадности"%>
+              <%= f.number_field :margin, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите коэффициент жадности"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :machine_preparation_time, "Время подготовки станка (час)"%>
+              <%= f.number_field :machine_preparation_time, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите машинное время (t)"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :material_preparation_cost, "Стоимость подготовки материалов"%>
+              <%= f.number_field :material_preparation_cost, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите стоимость подготовки материалов"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :programming_cost, "Стоимость программирования (сом)"%>
+              <%= f.number_field :programming_cost, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите стоимость программирования (сом)"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :programming_time, "Время программирования (мин)"%>
+              <%= f.number_field :programming_time, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите время программирования"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :work_time, "Время рабочего дня (час)"%>
+              <%= f.number_field :work_time, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите время программирования"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :min_order_sum, "Минимальная сумма заказа"%>
+              <%= f.number_field :min_order_sum, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите минимальную сумму"%>
+            </div>
+          </div>
+          <div class="card-footer">
+            <%= f.submit class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

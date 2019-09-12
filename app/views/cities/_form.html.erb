@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Город</h3>
+        </div>
+        <%= form_for @city do |f| %>
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.label :name, "Название"%>
+              <%= f.text_field :name, required: false, autofocus: true, label: false, class: 'form-control' , placeholder:"Введите название города" %>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <%= f.submit class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

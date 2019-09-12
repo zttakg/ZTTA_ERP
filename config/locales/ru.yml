@@ -1,0 +1,249 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        employee:
+          attributes:
+            password:
+              too_short: Пароль слишком короткий
+              blank: Пароль не может быть пустым
+            password_confirmation:
+              confirmation: Подвтердите пароль
+            email:
+              blank: Электронная почта не может быть пустой
+              taken: Такая электронная почта уже занята
+              invalid: Неверный формат электронной почты
+            phone_number:
+              blank: Введите номер телефона
+              invalid: Неверный формат номера телефона
+
+        constant:
+          attributes:
+            margin:
+              blank: Коэффициент жадности должен быть заполнен
+            machine_preparation_time:
+              blank: Время подготовки станка должно быть заполнено
+            material_preparation_cost:
+              blank: Стоимость подготовки материалов должна быть заполнена
+            programming_cost:
+              blank: Стоимость программирования должна быть заполнена
+        cut:
+          attributes:
+            name:
+              blank: Наименование должно быть заполнено
+            consumable_cost:
+              blank: Стоимость расходов должна быть заполнена
+            overhead_cost:
+              blank: Накладные расходы должны быть заполнены
+            height_max:
+              blank: Длина реза должна быть заполнена
+            width_max:
+              blank: Ширина реза должна быть заполнена
+        cut_material:
+          attributes:
+            hole_min:
+              blank: Минимальное отверстие должно быть заполнено
+            consumption:
+              blank: Потребление должно быть заполнено
+            speed:
+              blank: Скорость реза должна быть заполнена
+            pierce_price:
+              blank: Цена за пробивку должна быть заполнена
+        material:
+          attributes:
+            name:
+              blank: Наименование должно быть заполнено
+            thickness:
+              blank: Толщина должна быть заполнена
+            price_per_kg:
+              blank: Цена должна быть заполнена
+            width_max:
+              blank: Ширина листа должна быть заполнена
+            height_max:
+              blank: Длина листа должна быть заполнена
+            density:
+              blank: Плотность должна быть заполнена
+        client:
+          attributes:
+            email:
+              taken: Email уже существует
+            password:
+              too_short: Пароль не может быть менее 6 символов
+            password_confirmation:
+              confirmation: Пароли не совпадают
+
+
+  permissions:
+    clients:
+      module: Клиеты
+      list: Список клиентов
+      create: Добавление клиента
+      edit: Редактирование клиента
+      show: Просмотр клиента
+      ban: Блокировка клиента
+    individual_orders:
+      module: Заказы
+      list: Список закзов
+      show: Просмотр заказа
+    order_statuses_with:
+      module: Просматриваемые статусы
+      pending_payment: Ожидает оплаты
+      in_progress: В производстве
+      paid: Оплачен
+      canceled: Отменен
+      finished: Завершен
+      proof_payment: Подтверждение оплаты
+      payment_error: Ошибка платежа
+    order_statuses_on:
+      module: Статусы на изменение
+      pending_payment: Ожидает оплаты
+      in_progress: В производстве
+      paid: Оплачен
+      canceled: Отменен
+      finished: Завершен
+      proof_payment: Подтверждение оплаты
+      payment_error: Ошибка платежа
+    employees:
+      module: Сотрудники
+      list: Список сотрудников
+      create: Создание сотрудника
+      edit: Редактирование сотрудника
+      destroy: Удаление сотрудника
+    cuts:
+      module: Резы
+      list: Список резов
+      create: Добавление реза
+      edit: Редактирование реза
+    constants:
+      module: Параметры констуктора
+      edit: Редактирование констант
+    constructor:
+      module: Таблица данных
+      show: Просмотр таблицы данных
+    materials:
+      module: Материалы
+      list: Список материалов
+      create: Добавление материала
+      edit: Редактирование материала
+      destroy: Удаление материала
+    details:
+      module: Нетиповые детали
+      list: Список нетиповых деталей
+      show: Просмотр нетиповой детали
+      edit: Редактирование нетиповой детали
+    cities:
+      module: Города поставок
+      list: Список городов поставок
+      create: Добавление города поставок
+      edit: Редактирование города поставок
+    roles:
+      module: Роли
+      list: Список ролей
+      create: Создание роли
+      edit: Редактирование роли
+    contacts:
+      module: Контактные данные
+      edit: Редактирование
+    page_elements:
+      module: Элементы страницы
+      list: Список элементов страницы
+      show: Просмотр элемента страницы
+      create: Добавление элемента страницы
+      edit: Редактирование элемента страницы
+      destroy: Удаление элемента страницы
+    services:
+      module: Продукция и Услуги
+      list: Список
+      edit: Редактирование
+      create: Создание
+      destroy: Удаление
+    delivery_payments:
+      module: Доставка и Оплата
+      access: Доступ
+    notification:
+      module: Уведомления
+      order_new: Новые заказы
+      order_paid: Заказ оплачен
+      order_paid_by_card: Заказ оплачен картой
+      order_in_production: Заказ в производстве
+      order_cancelled: Заказ отменен
+      order_shipped: Заказ отгружен
+      order_finished: Заказ изготовлен
+      detail_for_evaluation: Деталь отправлена на оценку
+      detail_new: Новые нетиповые детали
+
+  time:
+    am: утра
+    formats:
+      default: "%a, %d %b %Y, %H:%M:%S %z"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+    pm: вечера
+
+  page_elements:
+    element_type:
+      about_us: 'О нас'
+      slide: 'Слайд'
+      user_agreement: 'Пользовательское соглашение'
+      privacy_policy: 'Политика конфиденциальности'
+
+  delivery_payment:
+      condition:
+        delivery: 'Доставка'
+        payment: 'Оплата'
+
+  sample_filter:
+    client:
+      fields:
+        id: ID
+        name: Имя
+        email: E-mail
+        phone_number: Телефон
+      buttons:
+        submit: Отправить
+        clear_form: Очистить
+    individual_order:
+      fields:
+        id: ID
+        name: Имя
+        last_name: Фамилия
+        person_type: Тип заказа
+        status: Статус
+        created_at: Дата создания
+        updated_at: Дата изменения
+      list:
+        person_type:
+          all_item: Все
+          individual: Физ лицо
+          legal: Юр лицо
+        status:
+          all_item: Все
+          pending_payment: Ожидает оплаты
+          paid: Оплачен
+          in_progress: В производстве
+          finished: Завершен
+          canceled: Отменен
+          proof_payment: Подтверждение оплаты
+          payment_error: Ошибка платежа
+      buttons:
+        submit: Отправить
+        clear_form: Очистить
+    employee:
+      fields:
+        id: ID
+        name: Имя
+        email: E-mail
+        phone_number: Телефон
+        branch: Подразделение
+      buttons:
+        submit: Отправить
+        clear_form: Очистить
+    material:
+      fields:
+        name: Наименование
+        thickness: Толщина
+        width_max: Ширина
+        height_max: Длина
+      buttons:
+        submit: Отправить
+        clear_form: Очистить

@@ -1,0 +1,87 @@
+<!-- /.row -->
+<div class="row">
+  <!-- /.col -->
+  <div class="col-12">
+    <h2><%= @detail.name %>
+      <div class="float-right">
+        <button type="button" class="btn btn-outline-primary float-right" data-toggle="modal" data-target="#modal-default">
+          Редактировать
+        </button>
+      </div>
+    </h2>
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th>Клиент</th>
+          <td>
+            <% if current_employee.allowed_to?(:show, 'clients') %>
+              <%= link_to "#{@detail.client.name} #{@detail.client.last_name}", client_path(@detail.client_id) %>
+            <% else %>
+              <%= @detail.client.name %> <%= @detail.client.last_name %>
+            <% end %>
+            <br>
+            <%= sanitize_db_phone_number(@detail.client.phone_number) %><br>
+            <%= @detail.client.email %><br>
+          </td>
+        </tr>
+        <tr>
+          <th style="width:50%">Статус:</th>
+          <td><%= detail_status(@detail.status) %></td>
+        </tr>
+        <tr>
+          <th>Количество</th>
+          <td><%= @detail.count %></td>
+        </tr>
+        <tr>
+          <th>Стоимость:</th>
+          <td><%= @detail.price %> сом</td>
+        </tr>
+        <tr>
+          <th>Материал:</th>
+          <td><%= @detail.cut_material.material.name %> <%= @detail.cut_material.material.thickness %> мм.</td>
+        </tr>
+        <tr>
+          <th>Тип реза:</th>
+          <td><%= @detail.cut_material.cut.name %></td>
+        </tr>
+        <tr>
+          <th>Длина:</th>
+          <td><%= @detail.width %> мм.</td>
+        </tr>
+        <tr>
+          <th>Ширина:</th>
+          <td><%= @detail.height %> мм.</td>
+        </tr>
+        <tr>
+          <th>Примечание к заказу:</th>
+          <td><%= @detail.description %></td>
+        </tr>
+        <tr>
+          <th>Загруженное изображение клиентом:</th>
+          <td><%= link_to @detail.attachment, "#{ENV['ZAVOD_URL']}/uploads/detail/attachment/#{@detail.id}/#{@detail.attachment}", target: '_blank' %>
+          </td>
+        </tr>
+        </tr>
+        <tr>
+          <th>Дата создания:</th>
+          <td><%= display_datetime(@detail.created_at) %></td>
+        </tr>
+        <tr>
+          <th>Дата последнего редактирования:</th>
+          <td><%= display_datetime(@detail.updated_at) %></td>
+        </tr>
+        <% if @detail.svg.present? %>
+          <tr>
+            <th>Загруженная svg менеджером:</th>
+            <td>
+                <%== @detail.svg %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+  <!-- /.col -->
+
+<%= render partial: 'form' %>

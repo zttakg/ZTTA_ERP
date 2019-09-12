@@ -1,0 +1,9 @@
+<tr>
+  <td><%= material.name %> - <%= material.thickness %> мм.</td>
+  <td><%= material.thickness %> мм.</td>
+  <td><%= material.width_max %></td>
+  <td><%= material.height_max %></td>
+  <td><%= material.cut_materials.map{ |x| x.cut.name}.join(", ") %></td>
+  <td><%= link_to 'Редактировать', edit_material_path(material.id), class: "btn btn-outline-primary" if current_employee.allowed_to?(:edit, 'materials') %>
+  <td><%= link_to 'Удалить', material_path(material.id), method: :delete, class: "btn btn-outline-primary" if current_employee.allowed_to?(:destroy, 'materials') %>
+</tr>

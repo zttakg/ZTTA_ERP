@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-6 offset-md-3">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Тип реза</h3>
+        </div>
+
+        <!-- /.card-header -->
+        <!-- form start -->
+        <%= form_for @cut do |f| %>
+            <div class="card-body">
+            <div class="form-group <%= 'error' if @cut.errors[:name].any? %>">
+                <%= f.label :name, "Наименование"%>
+                <%= f.text_field :name, required: false, autofocus: true, label: false, class: 'form-control' , placeholder:"Введите наименование" %>
+                <%= render 'shared/field_errors', object: @cut, field_name: :name %>
+              </div>
+            <div class="form-group <%= 'error' if @cut.errors[:consumable_cost].any? %>">
+                <%= f.label :consumable_cost, "Стоимость расходов"%>
+                <%= f.number_field :consumable_cost, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите стоимость расходов"%>
+                <%= render 'shared/field_errors', object: @cut, field_name: :consumable_cost %>
+              </div>
+            <div class="form-group <%= 'error' if @cut.errors[:overhead_cost].any? %>">
+                <%= f.label :overhead_cost, "Накладные расходы"%>
+                <%= f.number_field :overhead_cost, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите стомость накладных расходов"%>
+                <%= render 'shared/field_errors', object: @cut, field_name: :overhead_cost %>
+              </div>
+            <div class="form-group <%= 'error' if @cut.errors[:height_max].any? %>">
+                <%= f.label :height_max, "Максимальная длина листа"%>
+                <%= f.number_field :height_max, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Максимальная длина листа"%>
+                <%= render 'shared/field_errors', object: @cut, field_name: :height_max %>
+              </div>
+            <div class="form-group <%= 'error' if @cut.errors[:width_max].any? %>">
+                <%= f.label :width_max, "Максимальная ширина листа"%>
+                <%= f.number_field :width_max, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Максимальная ширина листа"%>
+                <%= render 'shared/field_errors', object: @cut, field_name: :width_max %>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <%= f.submit class: 'btn btn-primary' %>
+            </div>
+        <% end %>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+  </div>
+  <!-- /.row -->
+</div><!-- /.container-fluid -->

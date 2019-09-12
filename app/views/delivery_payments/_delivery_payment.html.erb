@@ -1,0 +1,8 @@
+<tr>
+  <td><%= ::I18n.t("delivery_payment.condition.#{delivery_payment.condition}") %></td>
+  <td><%= delivery_payment.title %></td>
+  <td>
+    <%= link_to '', edit_delivery_payment_path(delivery_payment.id), class: "nav-icon fa fa-edit" %>
+    <%= link_to '', delivery_payment_path(delivery_payment.id), class: "nav-icon fa fa-remove", method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
+  </td>
+</tr>

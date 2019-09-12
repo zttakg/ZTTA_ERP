@@ -1,0 +1,132 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="<%= individual_orders_path %>"><i class="fa fa-list"></i> Заказы</a></li>
+  <li class="breadcrumb-item active">Заказ #<%= pretty_id(@individual_order.id) %></li>
+</ol>
+
+<div class="invoice p-3 mb-3">
+  <div class="row">
+    <div class="col-12">
+      <h4>
+        <i class="fa fa-hashtag "></i> <%= pretty_id(@individual_order.id) %>
+        <div class="float-right">
+          <% if check_order_permission(@individual_order) %>
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modal-default">
+              Сменить статус
+            </button>
+            <%= link_to 'PDF', individual_order_path(@individual_order.id, format: :pdf), class: 'btn btn-outline-primary' %>
+          <% end %>
+        </div>
+      </h4>
+    </div>
+  </div>
+
+  <div class="row invoice-info">
+    <div class="col-sm-6 invoice-col">
+      <b>Статус:</b> <span class="label <%= order_status_color(@individual_order.status) %>"><%= humanize_order_status(@individual_order.status) %></span><br>
+      <% if @individual_order.individual? %>
+        <br>
+        <b>Оформлен на физическое лицо</b><br>
+        <b>Клиент:</b>
+        <% if current_employee.allowed_to?(:show, 'clients') %>
+          <%= link_to "#{@individual_order.last_name} #{@individual_order.name}", client_path(@individual_order.client_id) %>
+        <% else %>
+          <%= @individual_order.last_name %> <%= @individual_order.name %>
+        <% end %>
+        <br>
+        <b>Номер телефона:</b> <%= @individual_order.phone_number %><br>
+        <b>E-Mail:</b>         <%= @individual_order.email %><br>
+      <% else %>
+        <br>
+        <b>Оформлен на юридическое лицо</b><br>
+        <b>Клиент:</b>
+        <% if current_employee.allowed_to?(:show, 'clients') %>
+          <%= link_to "#{@individual_order.last_name} #{@individual_order.name}", client_path(@individual_order.client_id) %>
+        <% else %>
+          <%= @individual_order.last_name %> <%= @individual_order.name %>
+        <% end %>
+        <br>
+        <b>Контактное лицо:</b>   <%= @individual_order.contact_person_name %> <%= @individual_order.contact_person_last_name %><br>
+        <b>Номер телефона:</b>    <%= @individual_order.contact_person_phone_number %><br>
+        <b>E-Mail:</b>            <%= @individual_order.contact_person_email %><br>
+        <b>Компания:</b>          <%= @individual_order.company_name %><br>
+        <b>ИИН:</b>               <%= @individual_order.company_INN %><br>
+        <b>БИК:</b>               <%= @individual_order.company_BIC %><br>
+        <b>Код ОКПО:</b>          <%= @individual_order.company_OKPO %><br>
+        <b>Юридический адрес:</b> <%= @individual_order.company_legal_address %><br>
+        <b>Фактический адрес:</b> <%= @individual_order.company_address %><br>
+        <b>Банк:</b>              <%= @individual_order.bank_name %><br>
+        <b>Адрес банка:</b>       <%= @individual_order.bank_address %><br>
+        <b>Расчетный счет:</b>    <%= @individual_order.settlement_account %><br>
+      <% end %>
+      <b>Дата создания:</b> <%= display_datetime(@individual_order.created_at) %><br>
+      <b>Дата последнего изменения:</b> <%= display_datetime(@individual_order.updated_at) %><br><br>
+      <b>История заказа:</b>
+      <ul class="order_history_list">
+        <%= render collection: @individual_order.order_histories.order(created_at: :asc), partial: 'individual_orders/order_history' %>
+      </ul>
+    </div>
+
+    <div class="col-sm-6 invoice-col">
+      <b>Комментарий к заказу:</b><br>
+      <%= @individual_order.comment %>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="row">
+    <div class="col-12">
+      <h4>Список деталей:</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 table-responsive">
+      <table class="table table-striped details-table">
+        <thead>
+        <tr>
+          <th width=120></th>
+          <th>ID</th>
+          <th>Название</th>
+          <th>Материал</th>
+          <th>Тип резки</th>
+          <th>Кол-во</th>
+          <th>Отгружено</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          <%= render @individual_order.individual_items %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<% if @statuses.present? %>
+  <div class="modal fade" id="modal-default" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Изменить статус</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <%= form_for @individual_order, url: status_update_individual_order_path(@individual_order), method: :put do |f| %>
+          <div class="modal-body">
+            <div class="card-body">
+              <div class="form-group">
+                <%= f.label :status, "Статус"%>
+                <%= f.select :status, @statuses.collect {|s| [ humanize_order_status(s), s ] } %>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "Изменить", class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

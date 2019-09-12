@@ -1,0 +1,14 @@
+<%= form_for @service do |f| %>
+  <%= f.label "Название"%>
+  <%= f.text_field :title, required: true, autofocus: true, label: false, class: 'form-control' , placeholder:"Введите название продукции или услуга" %>
+  <%= f.label "Обложка"%>
+  <%= f.file_field :cover, autofocus: true, label: false, class: 'form-control' %>
+  <%= f.label "SVG"%>
+  <%= f.file_field :svg, autofocus: true, label: false, class: 'form-control' %>
+  <%= f.label "Описание" %>
+  <%= f.cktext_area :description, required: true, ckeditor: { language: 'ru'} %>
+
+  <div class="card-footer">
+    <%= f.submit 'Сохранить', class: 'btn btn-primary'%>
+  </div>
+<% end %>

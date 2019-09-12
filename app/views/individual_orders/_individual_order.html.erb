@@ -1,0 +1,26 @@
+<tr>
+  <td><%= link_to pretty_id(individual_order.id), individual_order_path(individual_order) %></td>
+  <td>
+    <% if individual_order.individual? %>
+      <span class='label label-primary'>Физ</span>
+    <% elsif individual_order.legal? %>
+      <span class='label label-warning'>Юр</span>
+    <% end %>
+  </td>
+  <% if current_employee.allowed_to?(:show, 'clients') %>
+    <td><%= link_to individual_order.name, client_path(individual_order.client_id) %></td>
+    <td><%= link_to individual_order.last_name, client_path(individual_order.client_id) %></td>
+  <% else %>
+    <td><%= individual_order.name %></td>
+    <td><%= individual_order.last_name %></td>
+  <% end %>
+  <td><%= sanitize_db_phone_number(individual_order.phone_number) %></td>
+  <td><%= individual_order.email %></td>
+  <td>
+    <span class="label <%= order_status_color(individual_order.status) %>">
+      <%= humanize_order_status(individual_order.status) %>
+    </span>
+  </td>
+  <td><%= display_datetime(individual_order.created_at) %></td>
+  <td><%= display_datetime(individual_order.updated_at) %></td>
+</tr>

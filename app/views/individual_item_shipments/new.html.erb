@@ -1,0 +1,46 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="<%= individual_orders_path %>"><i class="fa fa-list"></i> Заказы</a></li>
+  <li class="breadcrumb-item"><a href="<%= individual_order_path(@individual_order.id) %>">Заказ #<%= pretty_id(@individual_order.id) %></a></li>
+  <li class="breadcrumb-item active">Огрузка для детали #<%= pretty_id(@individual_item.id) %></li>
+</ol>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-6 offset-md-3">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Добавить огрузку для детали #<%= pretty_id(@individual_item.id) %></h3>
+        </div>
+        <div class="form-errors-block">
+          <% if @individual_item_shipment.errors.present? %>
+            <ul>
+              <% @individual_item_shipment.errors.messages.each do |error| %>
+                <li><%= error.flatten.last %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <%= form_for @individual_item_shipment, url: individual_item_individual_item_shipments_path do |f| %>
+            <div class="card-body">
+              <div class="form-group">
+                <%= f.label :count, "Количество"%>
+                <%= f.number_field :count, required: true, label: false, min: 1, step: :any, class: 'form-control', placeholder:"Кол-во отгружаемых деталей"%>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <%= f.submit class: 'btn btn-primary' %>
+            </div>
+        <% end %>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+  </div>
+  <!-- /.row -->
+</div><!-- /.container-fluid -->

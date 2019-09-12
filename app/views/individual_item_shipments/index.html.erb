@@ -1,0 +1,26 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="<%= individual_orders_path %>"><i class="fa fa-list"></i> Заказы</a></li>
+  <li class="breadcrumb-item"><a href="<%= individual_order_path(@individual_order.id) %>">Заказ #<%= pretty_id(@individual_order.id) %></a></li>
+  <li class="breadcrumb-item active">Список отгрузок для детали #<%= pretty_id(@individual_item.id) %></li>
+</ol>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body table-responsive p-0">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Отгрузил</th>
+              <th>Кол-во</th>
+              <th>Дата</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @individual_item_shipments %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

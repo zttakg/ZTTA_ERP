@@ -1,0 +1,42 @@
+<%= render_action_links(:edit, 'clients', 'Сбросить пароль', edit_client_path(client)) %>
+<%= render_action_links(:show, 'clients', 'Просмотр', client_path(client)) %>
+<%= render_action_links(:edit_data, 'clients', 'Редакт...', edit_data_client_path(client)) %>
+
+<% if client.banned_before && client.banned_before > Date.today %>
+  <%= render_action_links(:ban, 'clients', 'Разблокир...', unban_client_path(client), :put) %>
+<% elsif current_employee.allowed_to?(:ban, 'clients') %>
+  <button type="button" class="btn btn-sm btn-outline-primary mb-3 mr-3 float-right" data-toggle="modal" data-target="#modal-default-<%= client.id %>">
+    Заблокир...
+  </button>
+<% end %>
+
+<% if current_employee.allowed_to?(:ban, 'clients') %>
+  <div class="modal fade" id="modal-default-<%= client.id %>" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="card-title">Блокировка</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <%= form_for client do |f| %>
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.label :banned_before, "Дата окончания блокировки"%>
+              <%= f.date_field :banned_before, required: false, autofocus: true, label: false, class: 'form-control' , placeholder:"Введите пароль" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :ban_reason, "Причина блокировки"%>
+              <%= f.text_area :ban_reason, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <%= f.submit 'Заблокировать', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

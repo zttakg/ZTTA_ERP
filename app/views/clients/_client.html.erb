@@ -1,0 +1,9 @@
+<tr>
+  <td><%= client.id %></td>
+  <td><%= client.name %></td>
+  <td><%= client.email %></td>
+  <td><%= sanitize_db_phone_number(client.phone_number) %></td>
+  <td>
+  <%= render 'action', client: client %>
+  </td>
+</tr>

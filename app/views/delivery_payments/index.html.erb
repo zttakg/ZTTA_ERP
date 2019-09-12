@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-12">
+    <%= render_action_links(:access, 'delivery_payments', 'Создать', new_delivery_payment_path) %>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title text-center font-weight-bold">Доставка и Оплата</h3>
+      </div>
+      <div class="card-body table-responsive p-0">
+        <table class="table table-condensed">
+          <tr>
+            <th>Тип условия</th>
+            <th>Наименование</th>
+            <th style="width: 170px">Действие</th>
+          </tr>
+					<%= render @delivery_payments %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

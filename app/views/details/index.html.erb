@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-12">
+    <a class="<%= current_class?('expects_assessed') %>" href="/details?status=expects_assessed">Новые</a>
+    <a class="<%= current_class?('assessed') %>" href="/details?status=assessed">Оцениваются</a>
+    <a class="<%= current_class?('not_assessed') %>" href="/details?status=not_assessed">Невозможно оценить</a>
+    <a class="<%= current_class?('appraised') %>" href="/details?status=appraised">Оцененные</a>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title text-center font-weight-bold">Нетиповые детали</h3>
+      </div>
+      <div class="card-body table-responsive p-0">
+        <table class="table table-condensed">
+          <tr>
+            <th>ID</th>
+            <th>Наименование</th>
+            <th>Статус</th>
+          </tr>
+					<%= render @details %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<li>
+  <div class="datetime"><%= display_datetime(order_history.created_at) %></div>
+  <% if order_history.employee.present? %>
+    <%= order_history.employee.name %> изменил статус "<%= t("permissions.order_statuses_with.#{order_history.status_from}") %>" на "<%= t("permissions.order_statuses_on.#{order_history.status_to}") %>"
+  <% else %>
+    Клиент изменил статус на "<%= t("permissions.order_statuses_on.#{order_history.status_to}") %>"
+  <% end %>
+</li>

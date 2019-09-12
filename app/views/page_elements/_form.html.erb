@@ -1,0 +1,67 @@
+<div class="container-fluid" style=" background: #f4f6f9;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Элемент страницы</h3>
+        </div>
+        <div class="form-errors-block">
+          <% if @page_element.errors.present? %>
+            <ul>
+              <% @page_element.errors.messages.each do |error| %>
+                <li><%= error.flatten.last %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <%= form_for @page_element, class: 'form-signin' do |f| %>
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.label :element_type, "Тип"%>
+              <%= f.select :element_type, element_type_array(@page_element), {}, {class: "form-control"} %>
+            </div>
+            <div class="form-group">
+              <%= f.label :image, "Картинка"%>
+              <% if @page_element.slide? %>
+                <p>Рекомендуемый размер 1920 х 698</p>
+              <% end %>
+              <%= f.file_field :image, autofocus: true, label: false, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :title, 'Заголовок' %>
+              <%= f.text_field :title, required: false, autofocus: true, label: false, class: 'form-control' %>
+            </div>
+            <div id="showButton" class="none">
+              <table>
+                <%= f.label "Отображать кнопку с видео?" %>
+                <tr>
+                  <td><%= f.label 'true', 'Да' %></td>
+                  <td><%= f.radio_button :button, true, onClick: "show_video_block()" %></td>
+                </tr>
+
+                <tr>
+                  <td><%= f.label 'false', 'Нет' %></td>
+                  <td><%= f.radio_button :button, false, onClick: "hide_video_block()" %></td>
+                </tr>
+              </table>
+            </div>
+            <div id="video_link-block" class="form-group none">
+              <%= f.label :video_link, 'Ссылка на видео на внешний ресурс, например youtube'%>
+              <%= f.text_field :video_link, class: 'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= f.label :content, 'Содержание'%>
+              <%= f.cktext_area :content, required: true, ckeditor: { language: 'ru'} %>
+            </div>
+          </div>
+
+
+          <div class="card-footer">
+            <%= f.submit class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

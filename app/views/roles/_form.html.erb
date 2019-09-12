@@ -1,0 +1,70 @@
+<div class="form-group">
+  <%= f.label :name, "Название роли"%>
+  <%= f.text_field :name, required: true, autofocus: true, class: 'form-control' , placeholder:"Введите название роли" %>
+</div>
+
+<div class="row">
+  <% perms_by_module = @role.permissions.group_by {|p| p.project_module.to_s} %>
+  <% perms_by_module.keys.each do |mod| %>
+    <div class="col-3 role_block">
+      <div class="card-header">
+        <input type="checkbox" class="parent_checkbox">
+        <h3 class="card-title"><%= humanize(mod, 'module') %></h3>
+      </div>
+      <div class="scope_checkboxes">
+        <% perms_by_module[mod].each do |permission| %>
+          <div class="icheckbox_minimal-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
+            <% check = check_permission(@role, permission) %>
+            <%= check_box_tag "role[permission][#{permission.project_module}][]", permission.name, check,
+                  :id => "role_permissions_#{permission.name}",
+                  :data => {:shows => ".#{permission.name}_shown"},
+                  class: 'minimal' %>
+            <%= humanize(permission.project_module, permission.name) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('.parent_checkbox').each(function(){
+    checkParentChekboxStatus($(this));
+  })
+
+  $('.parent_checkbox').on('click', function(){
+    var $childCheckboxWrap = $(this).parent('.card-header').next(),
+        $scope = $('input[type="checkbox"]', $childCheckboxWrap),
+        $scopeChecked = $('input[type="checkbox"]:checked', $childCheckboxWrap),
+        allLength = $scope.length,
+        checkedLength = $scopeChecked.length;
+
+    $scope.prop({checked: !(allLength === checkedLength)});
+    $(this).prop({checked: !(allLength === checkedLength)});
+  })
+
+  $('.scope_checkboxes input[type="checkbox"]').on('click', function(){
+    checkParentChekboxStatus($(this).parents('.scope_checkboxes').prev().find('.parent_checkbox'));
+  })
+
+  function checkParentChekboxStatus($parentCheckbox) {
+    var $childCheckboxWrap = $parentCheckbox.parent('.card-header').next(),
+        $scope = $('input[type="checkbox"]', $childCheckboxWrap),
+        $scopeChecked = $('input[type="checkbox"]:checked', $childCheckboxWrap),
+        allLength = $scope.length,
+        checkedLength = $scopeChecked.length,
+        prop = {};
+
+    if (allLength === checkedLength) {
+      prop = {indeterminate: false, checked: true};
+    } else if (checkedLength > 0) {
+      prop = {indeterminate: true, checked: true};
+    } else {
+      prop = {indeterminate: false, checked: false};
+    }
+
+    $parentCheckbox.prop(prop);
+  }
+})
+</script>

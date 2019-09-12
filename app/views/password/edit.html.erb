@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 offset-md-4">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Введите новый пароль</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <%= form_tag password_update_path, method: :put do |f| %>
+          <div class="card-body">
+            <% if @error.present? %>
+              <div class="card-error">
+                <%= @error[:message] %>
+              </div>
+            <% end %>
+            <% if @employee.errors.present? %>
+              <div class="form-errors-block">
+                <ul>
+                  <% @employee.errors.messages.each do |error| %>
+                    <li><%= error.flatten.last %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <%= hidden_field_tag :token, params[:token] %>
+              <div class="input">
+                <%= password_field_tag :password, '', class: 'form-control', placeholder: 'Пароль' %>
+              </div>
+              <br>
+              <div class="input">
+                <%= password_field_tag :password_confirmation, '', class: 'form-control', placeholder: 'Подтвердите пароль' %>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <%= submit_tag 'Отправить', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+  </div>
+  <!-- /.row -->
+</div><!-- /.container-fluid -->

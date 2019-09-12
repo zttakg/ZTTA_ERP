@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-12">
+    <%= render_action_links(:create, 'services', 'Добавить продукцию или услугу', new_service_path) %>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title text-center font-weight-bold">Продукция и услуги</h3>
+      </div>
+      <div class="card-body table-responsive p-0">
+        <table class="table table-condensed">
+          <tr>
+            <th>Наименование</th>
+            <th style="width: 170px">Действие</th>
+          </tr>
+					<%= render @services %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

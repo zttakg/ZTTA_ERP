@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-12">
+    <%= render_action_links(:create, 'employees', 'Добавить сотрудника', new_employee_path) %>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title text-center font-weight-bold">Список сотрудников</h3>
+      </div>
+      <div class="card-body table-responsive p-0">
+        <%= form_for_filter Employee %>
+        <table class="table table-condensed">
+          <tr>
+            <th>ID <%= sort_link(Employee, :id) %></th>
+            <th>Имя <%= sort_link(Employee, :name) %></th>
+            <th>E-mail <%= sort_link(Employee, :email) %></th>
+            <th>Телефон</th>
+            <th scope="col">Подразделение <%= sort_link(Employee, :branch) %></th>
+            <th>Роль</th>
+            <th style="width: 170px"></th>
+          </tr>
+          <%= render @employees %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

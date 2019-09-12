@@ -1,0 +1,103 @@
+<div class="container-fluid" style=" background: #f4f6f9;">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-6 offset-md-3">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Материал</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <%= form_for @material, class: 'form-signin' do |f| %>
+            <div class="card-body">
+            <div class="form-group <%= 'error' if @material.errors[:name].any? %>">
+                <%= f.label :name, 'Наименование' %>
+                <%= f.text_field :name, required: false, autofocus: true, label: false, class: 'form-control' , placeholder:"Введите наименование" %>
+                <%= render 'shared/field_errors', object: @material, field_name: :name %>
+              </div>
+            <div class="form-group <%= 'error' if @material.errors[:thickness].any? %>">
+                <%= f.label :thickness, 'Толщина, мм'%>
+                <%= f.number_field :thickness, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите толщину, мм"%>
+                <%= render 'shared/field_errors', object: @material, field_name: :thickness %>
+              </div>
+            <div class="form-group <%= 'error' if @material.errors[:price_per_kg].any? %>">
+                <%= f.label :price_per_kg, 'Цена, сом/кг' %>
+                <%= f.number_field :price_per_kg, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Введите стоимость в сомах за 1 кг"%>
+                <%= render 'shared/field_errors', object: @material, field_name: :price_per_kg %>
+              </div>
+            <div class="form-group <%= 'error' if @material.errors[:density].any? %>">
+                <%= f.label :density, 'Плотность, гр/см³' %>
+                <%= f.number_field :density, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Плотность гр/см³"%>
+                <%= render 'shared/field_errors', object: @material, field_name: :density %>
+              </div>
+            <div class="form-group <%= 'error' if @material.errors[:height_max].any? %>">
+                <%= f.label :height_max, 'Длина листа' %>
+                <%= f.number_field :height_max, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Длина листа"%>
+                <%= render 'shared/field_errors', object: @material, field_name: :height_max %>
+              </div>
+            <div class="form-group <%= 'error' if @material.errors[:width_max].any? %>">
+                <%= f.label :width_max, 'Ширина листа' %>
+                <%= f.number_field :width_max, required: false, label: false, min: 0, step: :any, class: 'form-control', placeholder:"Ширина листа"%>
+                <%= render 'shared/field_errors', object: @material, field_name: :width_max %>
+              </div>
+            <div class="form-group">
+                <%= f.label :in_stock, 'на складе?' %>
+                <%= f.label :in_stock, 'да' %>
+                <%= f.radio_button :in_stock, :true %>
+                <%= f.label :in_stock, 'нет' %>
+                <%= f.radio_button :in_stock,  :false %>
+              </div>
+              <div class="form-group">
+
+                <p>Тип реза</p>
+                <div >
+                  <% Cut.all.each do |cut| %>
+                    <% cut_material = check_cut_material(@material, cut) %>
+
+                    <%= f.fields_for :cut_materials, cut_material do |ff| %>
+                      <% status = ff.object.id ? true : 'none' %>
+                      <%= ff.check_box :status, checked: status, id: cut.id, class: 'check_cut_material' %>
+                      <%= cut.name %> <br>
+                      <div class='<%= "card-body check_cut_material_#{cut.id}" %>' style='<%= "display: #{status}" %>'>
+                        <%= f.label :hole_min, 'Минимальное отверстие' %>
+                        <%= ff.text_field :hole_min, placeholder: 'Минимальное отверстие', class: 'form-control mb-2' %>
+                        <%= f.label :consumption, 'Потребление, сом/час' %>
+                        <%= ff.text_field :consumption, placeholder: 'Потребление, сом/час', class: 'form-control mb-2' %>
+                        <%= f.label :speed, 'Скорость реза, мм/час' %>
+                        <%= ff.text_field :speed, placeholder: 'Скорость реза, мм/час', class: 'form-control mb-2' %>
+                        <%= f.label :pierce_price, 'Цена за пробивку, сом' %>
+                        <%= ff.text_field :pierce_price, placeholder: 'Цена за пробивку, сом', class: 'form-control mb-2' %>
+                        <%= ff.hidden_field :cut_id, value: cut.id%>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <%= f.submit class: 'btn btn-primary' %>
+            </div>
+        <% end %>
+      </div>
+      <!-- /.card -->
+      </div>
+    </div>
+    <!--/.col (left) -->
+  </div>
+  <!-- /.row -->
+</div><!-- /.container-fluid -->
+
+
+<script>
+  $(function () {
+    $(".check_cut_material").click(function () {
+      if ($(this).is(":checked")) {
+          $(".check_cut_material_" + this.id).show();
+      } else {
+          $(".check_cut_material_" + this.id).hide();
+      }
+    });
+  });
+</script>

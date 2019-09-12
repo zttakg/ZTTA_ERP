@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 offset-md-4">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Войти в систему</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-signin') do |f| %>
+
+        <form role="form">
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.label :phone_number, "Номер телефона"%>
+              <%= f.input :phone_number, required: false, autofocus: true, label: false, input_html: { class: 'form-control phone_input' }, placeholder: "Введите номер телефона" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password, "Password"%>
+              <%= f.input :password, required: false, label: false,input_html: { class: 'form-control' }, placeholder:"Введите пароль", id: 'inputPassword'%>
+            </div>
+            <div class="form-check">
+              <%= f.input :remember_me, label: false, input_html: {class: "form-check-input"}, as: :boolean if devise_mapping.rememberable? %>
+              <%= f.label :remember_me, "Запомнить",input_html: {class: "form-check-label"} %>
+            </div>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <%= f.button :submit, 'Войти', class: 'btn btn-primary' %>
+            <%= link_to "Забыли пароль?", password_auth_path, class: 'float-right' %>
+          </div>
+        </form>
+        <% end %>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+  </div>
+  <!-- /.row -->
+</div><!-- /.container-fluid -->
