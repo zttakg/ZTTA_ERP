@@ -64,7 +64,7 @@ class OrderStatusUpdate
       SendNotificationJob.perform_async(ids, 'tg', msg)
     when 'payment_error'
       msg = "Заказ '№ #{order.id}': ошибка платежа ."
-      ids = fetch_telegram_ids('order_payment_error')
+      ids = fetch_telegram_ids('order_paid_by_card')
       SendNotificationJob.perform_async([phone_number], 'sms', msg)
       SendNotificationJob.perform_async(ids, 'tg', msg)
     end
