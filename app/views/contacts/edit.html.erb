@@ -3,53 +3,86 @@
     <div class="col-md-6 offset-md-3">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Контактные данные</h3>
+          <h3 class="card-title">Контактные данные менеджеров по направлениям:</h3>
         </div>
         <%= form_for @contact, url: contacts_path, method: :put, html: {class: 'contact_form'} do |f| %>
           <ul>
             <li>
-              <label for="metalware">Металлоконструкции</label>
+              <label for="metalware" style="color: #fd7e14">МЕТАЛЛОКОНСТРУКЦИИ</label>
+              <label for="metalware">Телефон:</label>
               <input id="metalware" type="tel" name="contact[metalware]" placeholder="+ (XXX) XXX XX XX XX" pattern="\(\d{3}\) \d{3}\ \d{2}\ \d{2} \d{2}" class="masked" value="<%= @contact.metalware %>">
             </li>
             <li>
-              <label for="telegram">Telegram для отдела металлоконструкции </label><br>
+              <label for="telegram">Telegram:</label><br>
               <input id="telegram" type="text" name="contact[telegram_link_for_metalware]" placeholder="Введите ссылку на профиль в telegram " value="<%= @contact.telegram_link_for_metalware %>">
               <span>Пример: https://t.me/username</span>
             </li>
             <li>
-              <label for="whatsapp">WhatsApp  для отдела металлоконструкции </label><br>
+              <label for="whatsapp">WhatsApp:</label><br>
               <input id="whatsapp" type="text" name="contact[whatsapp_link_for_metalware]" placeholder="Введите whatsapp номер " value="<%= @contact.whatsapp_link_for_metalware %>">
               <span>Пример: https://api.whatsapp.com/send?phone=996xxxyyyyyy</span>
             </li>
             <li>
-              <label for="cutting">Резка листа</label>
+              <label for="cutting" style="color: #fd7e14">РЕЗКА ЛИСТА</label>
+              <label for="cutting">Телефон:</label>
               <input id="cutting" type="tel" name="contact[cutting]" placeholder="+ (XXX) XXX XX XX XX" pattern="\(\d{3}\) \d{3}\ \d{2}\ \d{2} \d{2}" class="masked" value="<%= @contact.cutting %>">
             </li>
             <li>
-              <label for="telegram">Telegram</label><br>
+              <label for="telegram">Telegram:</label><br>
               <input id="telegram" type="text" name="contact[telegram_link]" placeholder="Введите ссылку на профиль в telegram " value="<%= @contact.telegram_link %>">
               <span>Пример: https://t.me/username</span>
             </li>
             <li>
-              <label for="whatsapp">WhatsApp</label><br>
+              <label for="whatsapp">WhatsApp:</label><br>
               <input id="whatsapp" type="text" name="contact[whatsapp_link]" placeholder="Введите whatsapp номер " value="<%= @contact.whatsapp_link %>">
               <span>Пример: https://api.whatsapp.com/send?phone=996xxxyyyyyy</span>
             </li>
             <li>
-              <label for="email">Email</label><br>
+              <label for="mak" style="color: #fd7e14">СЕТКА МАК</label>
+              <label for="mak">Телефон:</label>
+              <input id="mak" type="tel" name="contact[mak]" placeholder="+ (XXX) XXX XX XX XX" pattern="\(\d{3}\) \d{3}\ \d{2}\ \d{2} \d{2}" class="masked" value="<%= @contact.mak %>">
+            </li>
+            <li>
+              <label for="telegram">Telegram:</label><br>
+              <input id="telegram" type="text" name="contact[telegram_link_for_mak]" placeholder="Введите ссылку на профиль в telegram " value="<%= @contact.telegram_link_for_mak %>">
+              <span>Пример: https://t.me/username</span>
+            </li>
+            <li>
+              <label for="whatsapp">WhatsApp:</label><br>
+              <input id="whatsapp" type="text" name="contact[whatsapp_link_for_mak]" placeholder="Введите whatsapp номер " value="<%= @contact.whatsapp_link_for_mak %>">
+              <span>Пример: https://api.whatsapp.com/send?phone=996xxxyyyyyy</span>
+            </li>
+            <li>
+              <label for="gitter" style="color: #fd7e14">СЕТКА ГИТТЕР</label>
+              <label for="gitter">Телефон:</label>
+              <input id="gitter" type="tel" name="contact[gitter]" placeholder="+ (XXX) XXX XX XX XX" pattern="\(\d{3}\) \d{3}\ \d{2}\ \d{2} \d{2}" class="masked" value="<%= @contact.gitter %>">
+            </li>
+            <li>
+              <label for="telegram">Telegram:</label><br>
+              <input id="telegram" type="text" name="contact[telegram_link_for_gitter]" placeholder="Введите ссылку на профиль в telegram " value="<%= @contact.telegram_link_for_gitter %>">
+              <span>Пример: https://t.me/username</span>
+            </li>
+            <li>
+              <label for="whatsapp">WhatsApp:</label><br>
+              <input id="whatsapp" type="text" name="contact[whatsapp_link_for_gitter]" placeholder="Введите whatsapp номер " value="<%= @contact.whatsapp_link_for_gitter %>">
+              <span>Пример: https://api.whatsapp.com/send?phone=996xxxyyyyyy</span>
+            </li>
+            <li>
+              <label for="email" style="color: #fd7e14">ОБЩИЕ ДАННЫЕ</label>
+              <label for="email">E-mail:</label><br>
               <input id="email" type="email" name="contact[email]" placeholder="info@temirtulpar.com" value="<%= @contact.email %>">
             </li>
             <li>
-              <label for="address">Адрес</label><br>
+              <label for="address">Адрес:</label><br>
               <input id="address" type="text" name="contact[address]" placeholder="Введите адрес" value="<%= @contact.address %>">
             </li>
             <li>
-              <label for="facebook">Facebook</label><br>
+              <label for="facebook">Facebook:</label><br>
               <input id="facebook" type="text" name="contact[fb_link]" placeholder="Введите ссылку на профиль в facebook" value="<%= @contact.fb_link %>">
               <span>Пример: https://www.facebook.com/</span>
             </li>
             <li>
-              <label for="instagram">Instagram</label><br>
+              <label for="instagram">Instagram:</label><br>
               <input id="instagram" type="text" name="contact[instagram_link]" placeholder="Введите ссылку на профиль в instagram" value="<%= @contact.instagram_link %>">
               <span>Пример: https://www.instagram.com/</span>
             </li>

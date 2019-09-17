@@ -8,7 +8,7 @@ ru:
               too_short: Пароль слишком короткий
               blank: Пароль не может быть пустым
             password_confirmation:
-              confirmation: Подвтердите пароль
+              confirmation: Подтвердите пароль
             email:
               blank: Электронная почта не может быть пустой
               taken: Такая электронная почта уже занята

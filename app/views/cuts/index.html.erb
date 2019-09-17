@@ -1,21 +1,21 @@
 <div class="row">
   <div class="col-12">
-    <%= render_action_links(:create, 'cuts', 'Создать рез', new_cut_path) %>
+    <%= render_action_links(:create, 'cuts', 'Создать новый тип обработки', new_cut_path) %>
   </div>
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title text-center font-weight-bold">Типы резов</h3>
+        <h3 class="card-title text-center font-weight-bold">Типы обработки</h3>
       </div>
       <div class="card-body table-responsive p-0">
         <table class="table table-condensed">
           <tr>
-            <th>Наименование</th>
-            <th>Стоимость расходов</th>
-            <th>Накладные расходы</th>
-            <th>Длина</th>
-            <th>Ширина</th>
-            <th style="width: 170px">Действие</th>
+            <th>Наименование:</th>
+            <th>Стоимость расходных материалов за час (сом):</th>
+            <th>ПНР за час (сом):</th>
+            <th>Максимальная длина листа (мм):</th>
+            <th>Максимальная ширина листа (мм):</th>
+            <th style="width: 170px">Действие:</th>
           </tr>
 					<%= render @cuts %>
         </table>

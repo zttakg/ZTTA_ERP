@@ -3,7 +3,8 @@ lock "3.10.1"
 
 
 set :application, 'temirtulpar_erp'
-set :repo_url, 'git@bitbucket.org:spalmalo/temirtulpar_erp.git'
+# set :repo_url, 'git@bitbucket.org:spalmalo/temirtulpar_erp.git'
+set :repo_url, 'git@github.com:OverseerY/ZTTA_Site.git'
 
 set :deploy_to, "/opt/temirtulpar_erp"
 set :rvm_ruby_version, '2.5.1'

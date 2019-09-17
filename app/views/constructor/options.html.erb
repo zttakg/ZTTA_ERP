@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title text-center font-weight-bold">Таблица данных</h3>
+        <h3 class="card-title text-center font-weight-bold">Таблица данных по материалам и технологическим процессам</h3>
       </div>
       <!-- /.card-header -->
       <div class="card-body table-responsive p-0">
@@ -14,21 +14,40 @@
               <th colspan="4" class="text-center"><%= cut.name %></th>
               <% end %>
             <tr>
-              <th scope="col">Название</th>
-              <th scope="col">Цена</th>
-              <th scope="col">Макс длинна</th>
-              <th scope="col">Макс ширина</th>
+              <th scope="col">Наименование материала:</th>
+              <th scope="col">Цена за кг (сом):</th>
+              <th scope="col">Макс. длина листа (мм):</th>
+              <th scope="col">Макс. ширина листа (мм):</th>
               <% @cut.each do |cut| %>
-                <th scope="col">Мин отверст</th>
-                <th scope="col">Потребление сом/час</th>
-                <th scope="col">Скорость мм/час</th>
-                <th scope="col">Цена за пробивку, сом</th>
+                <th scope="col">Мин. диаметр отверстия (мм):</th>
+                <th scope="col">Стоимость потребления газа в час (сом):</th>
+                <th scope="col">Скорость резки (мм/час):</th>
+                <th scope="col">Стоимость пробивки (сом):</th>
               <% end %>
             </tr>
           </thead>
           <tbody>
             <%= render collection: @materials, partial: 'constructor/material' %>
           </tbody>
+          <tfoot>
+            <tr>
+            <tr>
+              <th scope="col">Наименование материала:</th>
+              <th scope="col">Цена за кг (сом):</th>
+              <th scope="col">Макс. длина листа (мм):</th>
+              <th scope="col">Макс. ширина листа (мм):</th>
+              <% @cut.each do |cut| %>
+                <th scope="col">Мин. диаметр отверстия (мм):</th>
+                <th scope="col">Стоимость потребления газа в час (сом):</th>
+                <th scope="col">Скорость резки (мм/час):</th>
+                <th scope="col">Стоимость пробивки (сом):</th>
+              <% end %>
+            </tr>
+            <th colspan="4"></th>
+            <% @cut.each do |cut| %>
+            <th colspan="4" class="text-center"><%= cut.name %></th>
+            <% end %>
+          </tfoot>
         </table>
       </div>
       <!-- /.card-body -->

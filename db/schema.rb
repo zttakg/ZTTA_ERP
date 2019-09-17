@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 2019_04_26_111535) do
   create_table "contacts", force: :cascade do |t|
     t.string "metalware"
     t.string "cutting"
+    t.string "mak"
+    t.string "gitter"
     t.string "email"
     t.string "address"
     t.datetime "created_at", null: false
@@ -98,6 +100,10 @@ ActiveRecord::Schema.define(version: 2019_04_26_111535) do
     t.string "whatsapp_link"
     t.string "whatsapp_link_for_metalware"
     t.string "telegram_link_for_metalware"
+    t.string "whatsapp_link_for_mak"
+    t.string "telegram_link_for_mak"
+    t.string "whatsapp_link_for_gitter"
+    t.string "telegram_link_for_gitter"
   end
 
   create_table "cut_materials", force: :cascade do |t|
