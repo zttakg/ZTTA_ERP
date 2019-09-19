@@ -7,6 +7,10 @@
         <%= detail.client.name %> <%= detail.client.last_name %>
       <% end %>
   </td>
-  <td><%= detail_status(detail.status) %></td>
+  <td>
+    <span class="label <%= detail_status_color(detail.status) %>">
+      <%= detail_status(detail.status) %>
+    </span>
+  </td>
   <td><%= display_datetime(detail.created_at) %></td>
 </tr>

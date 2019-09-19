@@ -1,11 +1,14 @@
-
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="<%= clients_path %>"><i class="fa fa-list"></i> Клиенты</a></li>
+  <li class="breadcrumb-item active"><%= @client.name %> <%= @client.last_name %></li>
+</ol>
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Контактные данные </h3>
+          <h3 class="card-title">Контактные данные: </h3>
         </div>
         <div class="card-body">
           <h4><%= @client.name %> <%= @client.last_name %></h4>

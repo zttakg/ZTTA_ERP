@@ -4,6 +4,6 @@
   <td><%= material.width_max %></td>
   <td><%= material.height_max %></td>
   <td><%= material.cut_materials.map{ |x| x.cut.name}.join(", ") %></td>
-  <td><%= link_to 'Редактировать', edit_material_path(material.id), class: "btn btn-outline-primary" if current_employee.allowed_to?(:edit, 'materials') %>
-  <td><%= link_to 'Удалить', material_path(material.id), method: :delete, class: "btn btn-outline-primary" if current_employee.allowed_to?(:destroy, 'materials') %>
+  <td><%= link_to '', edit_material_path(material.id), class: "nav-icon fa fa-edit" if current_employee.allowed_to?(:edit, 'materials') %></td>
+  <td><%= link_to '', material_path(material.id), class: "nav-icon fa fa-remove", method: :delete, data: { confirm: 'Вы уверены, что хотите удалить ' + material.name + ' - '+ material.thickness.to_s +  'мм ?'} if current_employee.allowed_to?(:destroy, 'materials') %></td>
 </tr>

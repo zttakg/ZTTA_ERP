@@ -4,9 +4,10 @@
     <% if current_employee.allowed_to?(:edit, 'services') %>
       <%= link_to '', edit_service_path(service.id), class: "nav-icon fa fa-edit" %>
     <% end %>
-
+  </td>
+  <td>
     <% if current_employee.allowed_to?(:destroy, 'services') %>
-      <%= link_to '', service_path(service.id), class: "nav-icon fa fa-remove", method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
+      <%= link_to '', service_path(service.id), class: "nav-icon fa fa-remove", method: :delete, data: { confirm: 'Вы действительно хотите удалить страницу <' + service.title + '>?' } %>
     <% end %>
   </td>
 </tr>

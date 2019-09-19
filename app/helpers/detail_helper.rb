@@ -13,4 +13,19 @@ module DetailHelper
       'не отправлен'
     end
   end
+
+  def detail_status_color(status)
+    case status
+    when 'not_assessed'
+      'label-danger'
+    when 'assessed'
+      'label-info'
+    when 'expects_assessed'
+      'label-primary'
+    when 'appraised'
+      'label-success'
+    when 'not_send'
+      'label-warning'
+    end
+  end
 end

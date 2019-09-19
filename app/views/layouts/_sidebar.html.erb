@@ -54,16 +54,7 @@
             </a>
           </li>
         <% end %>
-        <% if current_employee.allowed_to?(:list, 'employees') %>
-          <li class="nav-item">
-            <a href="<%= employees_path %>" class="nav-link <%= nav_active('employees')%>">
-              <i class="nav-icon fa fa-users"></i>
-              <p>
-                Сотрудники
-              </p>
-            </a>
-          </li>
-        <% end %>
+
         <% if current_employee.allowed_to?(:list, 'cuts') %>
           <li class="nav-item">
             <a href="<%= cuts_path %>" class="nav-link <%= nav_active('cuts')%>">
@@ -104,36 +95,6 @@
             </a>
           </li>
         <% end %>
-        <% if current_employee.allowed_to?(:list, 'cities') %>
-          <li class="nav-item">
-            <a href="<%= cities_path %>" class="nav-link <%= nav_active('cities')%>">
-              <i class="nav-icon fa fa-map-o"></i>
-              <p>
-                Города поставок
-              </p>
-            </a>
-          </li>
-        <% end %>
-        <% if current_employee.allowed_to?(:list, 'roles') %>
-          <li class="nav-item">
-            <%= link_to roles_path, class: "nav-link #{nav_active('roles')}"  do %>
-              <i class="nav-icon fa fa-users"></i>
-              <p>
-                Роли
-              </p>
-            <% end %>
-          </li>
-        <% end %>
-        <% if current_employee.allowed_to?(:edit, 'contacts') %>
-          <li class="nav-item">
-            <%= link_to edit_contacts_path, class: "nav-link #{nav_active('contacts')}"  do %>
-              <i class="nav-icon fa fa-book"></i>
-              <p>
-                Контактные данные
-              </p>
-            <% end %>
-          </li>
-        <% end %>
         <% if current_employee.allowed_to?(:list, 'page_elements') %>
           <li class="nav-item">
             <a href="<%= page_elements_path %>" class="nav-link <%= nav_active('page_elements')%>">
@@ -162,6 +123,46 @@
                 Доставка и оплата
               </p>
             </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'cities') %>
+          <li class="nav-item">
+            <a href="<%= cities_path %>" class="nav-link <%= nav_active('cities')%>">
+              <i class="nav-icon fa fa-map-o"></i>
+              <p>
+                Города поставок
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:edit, 'contacts') %>
+          <li class="nav-item">
+            <%= link_to edit_contacts_path, class: "nav-link #{nav_active('contacts')}"  do %>
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+                Контактные данные
+              </p>
+            <% end %>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'employees') %>
+          <li class="nav-item">
+            <a href="<%= employees_path %>" class="nav-link <%= nav_active('employees')%>">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Сотрудники
+              </p>
+            </a>
+          </li>
+        <% end %>
+        <% if current_employee.allowed_to?(:list, 'roles') %>
+          <li class="nav-item">
+            <%= link_to roles_path, class: "nav-link #{nav_active('roles')}"  do %>
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Роли
+              </p>
+            <% end %>
           </li>
         <% end %>
         <li class="nav-item">

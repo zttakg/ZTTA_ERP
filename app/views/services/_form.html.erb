@@ -1,3 +1,8 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="<%= services_path %>"><i class="fa fa-list"></i> Продукция и услуги</a></li>
+  <li class="breadcrumb-item active"><%= @service.title %></li>
+</ol>
+
 <%= form_for @service do |f| %>
   <%= f.label "Название"%>
   <%= f.text_field :title, required: true, autofocus: true, label: false, class: 'form-control' , placeholder:"Введите название продукции или услуга" %>

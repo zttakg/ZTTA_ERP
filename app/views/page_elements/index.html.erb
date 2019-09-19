@@ -10,19 +10,19 @@
       <div class="card-body table-responsive p-0">
         <table class="table table-condensed">
           <tr>
-            <th>Тип</th>
+            <th>Тип элемента</th>
             <th>Заголовок</th>
-            <th style="width: 170px">Действие</th>
+            <th></th>
+            <th></th>
           </tr>
 						<% @page_elements.each do |page_element| %>
 							<tr>
 								<td><%= ::I18n.t("page_elements.element_type.#{page_element.element_type}") %></td>
 							  <td><%= page_element.title %></td>
-							  <td style="width: 260px;" >
-                  <%= link_to 'Редактировать', edit_page_element_path(page_element.id), class: "btn btn-outline-primary"%>
-							    <% unless page_element.about_us? || page_element.user_agreement? || page_element.privacy_policy?  %>
-                    <%= link_to 'Удалить', page_element_path(page_element.id), method: :delete, data: {confirm: 'Вы уверены?'} , class: "btn btn-outline-primary"%>
-                  <% end %>
+                <td><%= link_to '', edit_page_element_path(page_element.id), class: "nav-icon fa fa-edit"%></td>
+                <td><% unless page_element.about_us? || page_element.user_agreement? || page_element.privacy_policy?  %>
+                      <%= link_to '', page_element_path(page_element.id), method: :delete, data: {confirm: 'Вы уверены, что хотите удалить элемент <' + page_element.title + '>?'} , class: "nav-icon fa fa-remove"%>
+                    <% end %>
                 </td>
 							</tr>
 						<% end %>

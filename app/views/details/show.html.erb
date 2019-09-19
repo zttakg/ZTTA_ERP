@@ -1,10 +1,15 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="<%= details_path %>"><i class="fa fa-list"></i> Нетиповые детали</a></li>
+  <li class="breadcrumb-item active"><%= @detail.name %> - <%= @detail.client.name %> <%= @detail.client.last_name %></li>
+</ol>
+
 <!-- /.row -->
 <div class="row">
   <!-- /.col -->
   <div class="col-12">
     <h2><%= @detail.name %>
       <div class="float-right">
-        <button type="button" class="btn btn-outline-primary float-right" data-toggle="modal" data-target="#modal-default">
+        <button type="button" class="btn btn-sm btn-outline-primary float-right" data-toggle="modal" data-target="#modal-default">
           Редактировать
         </button>
       </div>
@@ -26,11 +31,15 @@
         </tr>
         <tr>
           <th style="width:50%">Статус:</th>
-          <td><%= detail_status(@detail.status) %></td>
+          <td>
+          <span class="label <%= detail_status_color(@detail.status) %>">
+              <%= detail_status(@detail.status) %>
+          </span>
+          </td>
         </tr>
         <tr>
-          <th>Количество</th>
-          <td><%= @detail.count %></td>
+          <th>Количество:</th>
+          <td><%= @detail.count %> шт.</td>
         </tr>
         <tr>
           <th>Стоимость:</th>
@@ -41,7 +50,7 @@
           <td><%= @detail.cut_material.material.name %> <%= @detail.cut_material.material.thickness %> мм.</td>
         </tr>
         <tr>
-          <th>Тип реза:</th>
+          <th>Тип обработки:</th>
           <td><%= @detail.cut_material.cut.name %></td>
         </tr>
         <tr>
@@ -57,9 +66,8 @@
           <td><%= @detail.description %></td>
         </tr>
         <tr>
-          <th>Загруженное изображение клиентом:</th>
-          <td><%= link_to @detail.attachment, "#{ENV['ZAVOD_URL']}/uploads/detail/attachment/#{@detail.id}/#{@detail.attachment}", target: '_blank' %>
-          </td>
+          <th>Загруженный клиентом файл:</th>
+          <td><%= link_to @detail.attachment, "#{ENV['ZAVOD_URL']}/uploads/detail/attachment/#{@detail.id}/#{@detail.attachment}", target: '_blank' %></td>
         </tr>
         </tr>
         <tr>

@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-12">
-    <a class="<%= current_class?('expects_assessed') %>" href="/details?status=expects_assessed">Новые</a>
-    <a class="<%= current_class?('assessed') %>" href="/details?status=assessed">Оцениваются</a>
-    <a class="<%= current_class?('not_assessed') %>" href="/details?status=not_assessed">Невозможно оценить</a>
-    <a class="<%= current_class?('appraised') %>" href="/details?status=appraised">Оцененные</a>
+    <a class="<%= current_class?('expects_assessed') %> btn-sm" href="/details?status=expects_assessed">Новые</a>
+    <a class="<%= current_class?('assessed') %> btn-sm btn-outline-info" href="/details?status=assessed">Оцениваются</a>
+    <a class="<%= current_class?('not_assessed') %> btn-sm btn-outline-danger" href="/details?status=not_assessed">Невозможно оценить</a>
+    <a class="<%= current_class?('appraised') %> btn-sm btn-outline-success" href="/details?status=appraised">Оцененные</a>
   </div>
   <div class="col-12">
     <div class="card">
