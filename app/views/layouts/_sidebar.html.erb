@@ -44,6 +44,16 @@
             </a>
           </li>
         <% end %>
+        <% if current_employee.allowed_to?(:list, 'details') %>
+          <li class="nav-item">
+            <a href="<%= details_path(status: 'expects_assessed') %>" class="nav-link <%= nav_active('details')%>">
+              <i class="nav-icon fa fa-microchip"></i>
+              <p>
+                Нетиповые детали
+              </p>
+            </a>
+          </li>
+        <% end %>
         <% if current_employee.allowed_to?(:list, 'employees') %>
           <li class="nav-item">
             <a href="<%= employees_path %>" class="nav-link <%= nav_active('employees')%>">
@@ -90,16 +100,6 @@
               <i class="nav-icon fa fa-cubes"></i>
               <p>
                 Материалы
-              </p>
-            </a>
-          </li>
-        <% end %>
-        <% if current_employee.allowed_to?(:list, 'details') %>
-          <li class="nav-item">
-            <a href="<%= details_path(status: 'expects_assessed') %>" class="nav-link <%= nav_active('details')%>">
-              <i class="nav-icon fa fa-microchip"></i>
-              <p>
-                Нетиповые детали
               </p>
             </a>
           </li>

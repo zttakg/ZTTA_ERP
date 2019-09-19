@@ -1,5 +1,12 @@
 <tr>
   <td><%= link_to detail.id, detail_path(detail) %></td>
   <td><%= link_to detail.name, detail_path(detail) %></td>
+  <td><% if current_employee.allowed_to?(:show, 'clients') %>
+        <%= link_to "#{detail.client.name} #{detail.client.last_name}", client_path(detail.client_id) %>
+      <% else %>
+        <%= detail.client.name %> <%= detail.client.last_name %>
+      <% end %>
+  </td>
   <td><%= detail_status(detail.status) %></td>
+  <td><%= display_datetime(detail.created_at) %></td>
 </tr>
