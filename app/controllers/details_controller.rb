@@ -6,7 +6,7 @@ class DetailsController < ApplicationController
 
   def index
     status = params[:status].present? ? params[:status] : 'expects_assessed'
-    @details = Detail.custom_by_status(status)
+    @details = Detail.custom_by_status(status).order(created_at: :desc)
   end
 
   def update
